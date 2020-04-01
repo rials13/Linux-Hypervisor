@@ -65,6 +65,12 @@ This motherboard does not properly separate iommu groups so ACS override patch i
   - ```pip install click request```
   - On Ubuntu (didn't have this problem for Mint) I also had to install ```qemu-system-x86``` and ```qemu-utils```
 - Both:
- -```git clone https://github.com/foxlet/macOS-Simple-KVM.git```
- -```cd macOS-Simple-KVM```
- -```./jumpstart.sh (optional --high-sierra, --mojave)``` I did ```./jumpstart.sh --high-sierra``` on account of having an Nvidia graphics card.
+  -```git clone https://github.com/foxlet/macOS-Simple-KVM.git```
+  -```cd macOS-Simple-KVM```
+  -```./jumpstart.sh (optional --high-sierra, --mojave)``` I did ```./jumpstart.sh --high-sierra``` on account of having an Nvidia graphics card.
+  -```qemu-img create -f qcow2 MyDisk.qcow2 XXG``` where XX is the amount in gigabytes you want the drive to be. (this is where I needed qemu-utils on Ubuntu)
+  -Add these to bottom of basic.sh: 
+  ```
+    -drive id=SystemDisk,if=none,file=MyDisk.qcow2 \
+    -device ide-hd,bus=sata.4,drive=SystemDisk \
+  ```
