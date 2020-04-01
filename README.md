@@ -1,2 +1,14 @@
 # Linux-Hypervisor
 This is a section of notes for setting up a linux host to run qemu/kvm/libvirt with both a windows and a macos vm with passthrough
+
+Step 1: Choose your OS.
+- I started with Manjaro because things worked on it with other guides but ended up on Mint.
+- It's worth noting that an ACS override is easier on Manjaro with the AUR.
+
+-My config:
+Mobo + processor: Gigabyte z97x-SOC-CF with i7-4790
+16x Slot 1: MSI GTX970 - passed through to VMs
+16x Slot 3: R9 290 - primary
+16x Slot 4: Fresco Logic FL1100 USB 3.0 - passed through to VMs
+
+This motherboard does not properly separate iommu groups so ACS override patch it required.
