@@ -71,12 +71,13 @@ This motherboard does not properly separate iommu groups so ACS override patch i
   - ```sudo apt-get install virt-manager```
 - Problems encountered with Virt-Manager:
   - Starting the network: ```sudo virsh net-start default```
-    - I got the "firewalld backend" error. Installed ```ebtables``` and ```dnsmasq``` and it worked. However, after installing I had to re-add the "connection"
+    - I got the "firewalld backend" error. Installed ```ebtables``` and ```dnsmasq``` and it worked.
     - I had to add my username to the ```libvirt``` group in order to resolve some permissions issues. Also chown-ed the Intel SSD to my username. ```groups``` to check what group you are in.  ```Sudo usermod -a -G username libvirt``` Note: this only worked after a reboot following the install of virt-manager because libvirt was not a group yet
   - UEFI files: I tried making a Windows 7/10 vm and the UEFI was not found (not a problem in MacOS because Passthrough Post provides the UEFI files in their folder). This was a problem in both Mint and Manjaro.
     - ```/etc/libvirt/qemu.conf``` has an "nvram" section. Look at the section and confirm the path (note that this does not have to be uncommented it just describes the default behavior). My path was ```/usr/share/OVMF/...```
-    - Looking at that directory, the only file was ```OVMF.fd```
-    - 
+    - Looking at that directory, the only file was ```OVMF.fd``` nvram was looking for ```OVMF_CODE.fd``` and ```OVMF_VARS.fd```
+    - Through a lot of Googling, I stumbled upon ```https://www.kraxel.org/repos/jenkins/edk2/?C=N;O=A``` and downloaded the ```edk2.git-ovmf-x64...rpm``` file.
+    - Inside the package, there is a directory ```/ovmf/usr/share/edk2.git/ovmf-x64``` with the files ```OVMF_CODE-pure-efi.fd``` and ```OVMF_VARS-pure-efi.fd``` I renamed them to ```OVMF_CODE.fd``` and ```OVMF_VARS.fd``` and moved them to my ```/usr/share/OVMF/``` folder.
 
 
 
