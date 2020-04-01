@@ -43,6 +43,7 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 
 **Step 2: Separating Passthrough Devices:**
 - For Mnajaro, I used the the Arch Wiki, including the part about loading the vfio-pci early: https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF#Isolating_the_GPU
+  - Rather than passing the the IDs in grub, I defined defined them in ```/etc/modprobe.d/vfio.conf``` only. 
 - For Mint, I used the site: https://mathiashueber.com/windows-virtual-machine-gpu-passthrough-ubuntu/
 
 - To summarize: 
