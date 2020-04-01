@@ -45,4 +45,4 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 - For Mint, I used the site: https://mathiashueber.com/windows-virtual-machine-gpu-passthrough-ubuntu/
 
 - To summarize: 
-
+  - In ```sudo nano /etc/initramfs-tools/modules``` add: ```vfio vfio_iommu vfio_virqfd frio_pci ids=``` and the IDs you want to passthrough (determined from ```iommu.sh```)
