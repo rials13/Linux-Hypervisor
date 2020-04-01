@@ -10,7 +10,7 @@ Mobo + processor: Gigabyte z97x-SOC-CF with i7-4790
 - 16x Slot 1: MSI GTX970 - passed through to VMs
 - 1x Slot: Empty
 - 16x Slot 2: Empty
-- 16x Slot 3: R9 290 - primary
+- 16x Slot 3: R9 290 - primary (original plan was to pass AMD card through but had trouble getting MacOS to work with this card)
 - 16x Slot 4: Fresco Logic FL1100 USB 3.0 - passed through to VMs
 
 This motherboard does not properly separate iommu groups so ACS override patch it required.
@@ -35,7 +35,7 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 - Update grub ```sudo update-grub```
 - reboot and use```sudo uname -r``` to verify the new ACS patched kernel is running
 
-**Vulkan:** Because we want the host to be functional as well for everyday tasks and some gaming.
+**OPTIONAL Vulkan:** Because we want the host to be functional as well for everyday tasks and some gaming.
 - With both Manjaro and Mint, Steam games on linux would occasionally not run due to not having vulkan natively installed (Dota Underlords). You may only encounter this issue with gfx cards that are older???
 - in etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```radeon.cik_support=0 amdgpu.cik_support=1 radeon.si_support=0 amdgpu.si_support=1```
 - add a PPA to your system ```sudo add-apt-repository ppa:oibaf/graphics-drivers```
