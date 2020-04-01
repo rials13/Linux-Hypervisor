@@ -19,7 +19,7 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 **Step 1: Enabling IOMMU** 
 - in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```intel_iommu=on iommu=pt```
 - Update grub ```sudo update-grub```
-- in a file called ```iommu.sh```copy and paste from TODO:LINK TO PASSTHROUGH POST GITHUB FOR IOMMU.SH
+- in a file called ```iommu.sh```copy and paste from https://github.com/PassthroughPOST/Example-OSX-Virt-Manager/blob/master/iommu.sh
 
 - Run it to check for IOMMU Groups ```./iommu.sh```
   - Record the GPU (and HDMI Audio) and USB card to Passthrough. example: ```10de:13c2``` from the GTX 970
@@ -54,3 +54,5 @@ This motherboard does not properly separate iommu groups so ACS override patch i
   - In ```sudo nano /etc/modprobe.d/kvm.conf``` add: ```options kvm ignore_msrs=1``` (needed for Win 10 after update 1803.
   - Update iniramfs ```sudo update-initramfs -u``` and reboot.
 - Aside from the passed through gpu not displaying any output, using ```lspci -nnv``` will show that the vfio-pci is the kernel driver in use. However: the passed through USB card on my system works for the host until the VM is started.
+
+**Step 3: Installing qemu/virt-manager
