@@ -76,11 +76,18 @@ This motherboard does not properly separate iommu groups so ACS override patch i
   - UEFI files: I tried making a Windows 7/10 vm and the UEFI was not found (not a problem in MacOS because Passthrough Post provides the UEFI files in their folder). This was a problem in both Mint and Manjaro.
     - ```/etc/libvirt/qemu.conf``` has an "nvram" section. Look at the section and confirm the path (note that this does not have to be uncommented it just describes the default behavior). My path was ```/usr/share/OVMF/...```
     - Looking at that directory, the only file was ```OVMF.fd``` nvram was looking for ```OVMF_CODE.fd``` and ```OVMF_VARS.fd```
-    - Through a lot of Googling, I stumbled upon ```https://www.kraxel.org/repos/jenkins/edk2/?C=N;O=A``` and downloaded the ```edk2.git-ovmf-x64...rpm``` file.
-    - Inside the package, there is a directory ```/ovmf/usr/share/edk2.git/ovmf-x64``` with the files ```OVMF_CODE-pure-efi.fd``` and ```OVMF_VARS-pure-efi.fd``` I renamed them to ```OVMF_CODE.fd``` and ```OVMF_VARS.fd``` and moved them to my ```/usr/share/OVMF/``` folder.
+    - Through a lot of Googling, I stumbled upon https://www.kraxel.org/repos/jenkins/edk2/?C=N;O=A and downloaded the ```edk2.git-ovmf-x64...rpm``` file.
+    - Inside the package, there is a directory ```/ovmf/usr/share/edk2.git/ovmf-x64``` with the files ```OVMF_CODE-pure-efi.fd``` and ```OVMF_VARS-pure-efi.fd``` I renamed them to ```OVMF_CODE.fd``` and ```OVMF_VARS.fd``` and moved them to my ```/usr/share/OVMF/``` folder.  After restarting libvirt UEFI worked.
+    
+**Windows VM:**
+  - Problems with install:
+    - Win7 would stall at Starting Windows.  This may have been because I setup the VM with the Spice Display rather than the passed through GPU. I think the problem was with the reset bug and not allowing the GPU to reinitialize (saw Code 10 error in device manager)
+    - With Win 10, I setup the VM with Virt-manager's GUI and ensured that Q35 and UEFI were selected. Before starting the VM I passed through the GPU+Audio and USB3 Card.  Then removed the QXL and Spice gpu/display.
+    - Got the Code 43 Error: used https://mathiashueber.com/fighting-error-43-nvidia-gpu-virtual-machine/#error-43-vm-config to hide Nvidia card. The VM worked without these settings but could not change res past 800x600.
+    - When checking device manager, many devices were not found. Used this guide http://www.zeta.systems/blog/2018/07/03/Installing-Virtio-Drivers-In-Windows-On-KVM/ to determine what drivers to load from the virtio-win-0.1.171.iso
 
 
-
+**MacOS VM:** Continued from install section above using Passthrough Post's guide.
   - ```git clone https://github.com/foxlet/macOS-Simple-KVM.git```
   - ```cd macOS-Simple-KVM```
   - ```./jumpstart.sh (optional --high-sierra, --mojave)``` I did ```./jumpstart.sh --high-sierra``` on account of having an Nvidia graphics card.
