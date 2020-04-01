@@ -12,7 +12,7 @@ Mobo + processor: Gigabyte z97x-SOC-CF with i7-4790
 - 16x Slot 4: Fresco Logic FL1100 USB 3.0 - passed through to VMs
 
 This motherboard does not properly separate iommu groups so ACS override patch it required.
-sudo uname -r for checking what kernel is running
+```sudo uname -r``` for checking what kernel is running
 
 Manjaro:
 ACS override patch linux-vfio AUR package
@@ -20,9 +20,12 @@ in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add pcie_acs_override=downstream
 
 Mint:
 Download (a version with a kerel higher than the one running) the headers and image file from https://queuecumber.gitlab.io/linux-acs-override/
-
 use sudo dpkg -i <file-name.deb> on both files then reboot
 sudo uname -r to verify the new ACS patched kernel is running
+in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add pcie_acs_override=downstream
 
+Vulkan: 
+With both Manjaro and Mint, Steam games on linus would occasionally not run due to not having vulkan natively installed (Dota Underlords). You may only encounter this issue with gfx cards that are fringe vulkan cards (Firepro M5100 and R9 290)
+in etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add radeon.cik_support=0 amdgpu.cik_support=1 radeon.si_support=0 amdgpu.si_support=1
 
 
