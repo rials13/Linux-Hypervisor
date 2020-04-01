@@ -30,13 +30,13 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 
 **Mint:**
 - Download (a version with a kernel higher than the one running) the headers and image file from https://queuecumber.gitlab.io/linux-acs-override/
-- use ```sudo dpkg -i <file-name.deb>``` on both files then reboot
+- use ```sudo dpkg -i <file-name.deb>``` on both files
 - in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```pcie_acs_override=downstream```
 - Update grub ```sudo update-grub```
 - reboot and use```sudo uname -r``` to verify the new ACS patched kernel is running
 
 **Vulkan:** Because we want the host to be functional as well for everyday tasks and some gaming.
-- With both Manjaro and Mint, Steam games on linux would occasionally not run due to not having vulkan natively installed (Dota Underlords). You may only encounter this issue with gfx cards that are fringe vulkan cards (Firepro M5100 and R9 290)
+- With both Manjaro and Mint, Steam games on linux would occasionally not run due to not having vulkan natively installed (Dota Underlords). You may only encounter this issue with gfx cards that are older???
 - in etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```radeon.cik_support=0 amdgpu.cik_support=1 radeon.si_support=0 amdgpu.si_support=1```
 - add a PPA to your system ```sudo add-apt-repository ppa:oibaf/graphics-drivers```
 - install from ppa ```sudo apt-get install libvulkan1 mesa-vulkan-drivers vulkan-utils```
