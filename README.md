@@ -62,4 +62,9 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 - Mint:
   - ```sudo apt-get install qemu python python-pip git```
   - ```sudo apt-get install python3-pip```
+  - ```pip install click request```
   - On Ubuntu (didn't have this problem for Mint) I also had to install ```qemu-system-x86``` and ```qemu-utils```
+- Both:
+ -```git clone https://github.com/foxlet/macOS-Simple-KVM.git```
+ -```cd macOS-Simple-KVM```
+ -```./jumpstart.sh (optional --high-sierra, --mojave)``` I did ```./jumpstart.sh --high-sierra``` on account of having an Nvidia graphics card.
