@@ -15,26 +15,26 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 ```sudo uname -r``` for checking what kernel is running
 
 **Enabling IOMMU** 
-in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```intel_iommu=on iommu=pt```
-in a file called ```iommu.sh```copy and paste from TODO:LINK TO PASSTHROUGH POST GITHUB FOR IOMMU.SH
+- in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```intel_iommu=on iommu=pt```
+- in a file called ```iommu.sh```copy and paste from TODO:LINK TO PASSTHROUGH POST GITHUB FOR IOMMU.SH
 
-Run it to check for IOMMU Groups ```./iommu.sh```
+- Run it to check for IOMMU Groups ```./iommu.sh```
 
 **Manjaro:**
-ACS override patch linux-vfio AUR package
-in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```pcie_acs_override=downstream,multifunction```
+- ACS override patch linux-vfio AUR package
+- in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```pcie_acs_override=downstream,multifunction```
 
 **Mint:**
-Download (a version with a kernel higher than the one running) the headers and image file from https://queuecumber.gitlab.io/linux-acs-override/
-use ```sudo dpkg -i <file-name.deb>``` on both files then reboot
-```sudo uname -r``` to verify the new ACS patched kernel is running
-in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```pcie_acs_override=downstream```
-Update grub ```sudo update-grub```
+- Download (a version with a kernel higher than the one running) the headers and image file from https://queuecumber.gitlab.io/linux-acs-override/
+- use ```sudo dpkg -i <file-name.deb>``` on both files then reboot
+- ```sudo uname -r``` to verify the new ACS patched kernel is running
+- in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```pcie_acs_override=downstream```
+- Update grub ```sudo update-grub```
 
 **Vulkan:**
-With both Manjaro and Mint, Steam games on linux would occasionally not run due to not having vulkan natively installed (Dota Underlords). You may only encounter this issue with gfx cards that are fringe vulkan cards (Firepro M5100 and R9 290)
-in etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```radeon.cik_support=0 amdgpu.cik_support=1 radeon.si_support=0 amdgpu.si_support=1```
-add a PPA to your system ```sudo add-apt-repository ppa:oibaf/graphics-drivers```
-install from ppa ```sudo apt-get install libvulkan1 mesa-vulkan-drivers vulkan-utils```
+- With both Manjaro and Mint, Steam games on linux would occasionally not run due to not having vulkan natively installed (Dota Underlords). You may only encounter this issue with gfx cards that are fringe vulkan cards (Firepro M5100 and R9 290)
+- in etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```radeon.cik_support=0 amdgpu.cik_support=1 radeon.si_support=0 amdgpu.si_support=1```
+- add a PPA to your system ```sudo add-apt-repository ppa:oibaf/graphics-drivers```
+- install from ppa ```sudo apt-get install libvulkan1 mesa-vulkan-drivers vulkan-utils```
 
 
