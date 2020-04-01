@@ -34,5 +34,7 @@ Update grub ```sudo update-grub```
 **Vulkan:**
 With both Manjaro and Mint, Steam games on linux would occasionally not run due to not having vulkan natively installed (Dota Underlords). You may only encounter this issue with gfx cards that are fringe vulkan cards (Firepro M5100 and R9 290)
 in etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```radeon.cik_support=0 amdgpu.cik_support=1 radeon.si_support=0 amdgpu.si_support=1```
+add a PPA to your system ```sudo add-apt-repository ppa:oibaf/graphics-drivers```
+install from ppa ```sudo apt-get install libvulkan1 mesa-vulkan-drivers vulkan-utils```
 
 
