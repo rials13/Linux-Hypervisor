@@ -17,15 +17,13 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 Manjaro:
 ACS override patch linux-vfio AUR package
 in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```pcie_acs_override=downstream,multifunction```
-To reload initramfs on Manjaro it is ```sudo mkinitcpio -P```(P is all presets) which is their version of initramfs
 
 Mint:
 Download (a version with a kernel higher than the one running) the headers and image file from https://queuecumber.gitlab.io/linux-acs-override/
 use ```sudo dpkg -i <file-name.deb>``` on both files then reboot
 ```sudo uname -r``` to verify the new ACS patched kernel is running
 in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```pcie_acs_override=downstream```
-Reload grub ```sudo update-grub```
-Reload initramfs by using ```sudo update-initramfs -u```
+Update grub ```sudo update-grub```
 
 Vulkan: 
 With both Manjaro and Mint, Steam games on linux would occasionally not run due to not having vulkan natively installed (Dota Underlords). You may only encounter this issue with gfx cards that are fringe vulkan cards (Firepro M5100 and R9 290)
