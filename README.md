@@ -48,4 +48,7 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 - To summarize: 
   - In ```sudo nano /etc/initramfs-tools/modules``` add: ```vfio vfio_iommu vfio_virqfd frio_pci ids=abcd:1234,abcd:5678``` where abcd:1234... are the IDs you want to passthrough (determined from ```iommu.sh```)
   - In ```sudo nano /etc/modules``` add: ```vfio vfio_iommu_type1 vfio_pci ids=abcd:1234,abcd:5678```
-    Despite these changes, when running ```lspci -nnv``` the Nvidia GPU was still loading it's driver rather than the vfio one.
+  - Despite these changes, when running ```lspci -nnv``` the Nvidia GPU was still loading it's driver rather than the vfio one. In ```sudo nano /etc/modprobe.d/nvidia.conf``` add: 
+  ```
+  softdep nouveau pre: vfio-pci softdep nvidia pre: vfio-pci softdep nvidia* pre: vfio-pci```
+  ```
