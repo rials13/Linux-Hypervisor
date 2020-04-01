@@ -8,6 +8,8 @@ This is a section of notes for setting up a linux host to run qemu/kvm/libvirt w
 -My config:
 Mobo + processor: Gigabyte z97x-SOC-CF with i7-4790
 - 16x Slot 1: MSI GTX970 - passed through to VMs
+- 1x Slot: Empty
+- 16x Slot 2: Empty
 - 16x Slot 3: R9 290 - primary
 - 16x Slot 4: Fresco Logic FL1100 USB 3.0 - passed through to VMs
 
