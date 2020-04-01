@@ -14,6 +14,18 @@ Mobo + processor: Gigabyte z97x-SOC-CF with i7-4790
 This motherboard does not properly separate iommu groups so ACS override patch it required.
 ```sudo uname -r``` for checking what kernel is running
 
+**Enabling IOMMU** 
+in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```intel_iommu=on iommu=pt```
+in a file called ```iommu.sh```:
+  ```#!/bin/bash
+shopt -s nullglob
+for d in /sys/kernel/iommu_groups/*/devices/*; do 
+    n=${d#*/iommu_groups/*}; n=${n%%/*}
+    printf 'IOMMU Group %s ' "$n"
+    lspci -nns "${d##*/}"
+done | sort -V```
+Run it to check for IOMMU Groups ```./iommu.sh```
+
 **Manjaro:**
 ACS override patch linux-vfio AUR package
 in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```pcie_acs_override=downstream,multifunction```
