@@ -22,6 +22,7 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 - in a file called ```iommu.sh```copy and paste from TODO:LINK TO PASSTHROUGH POST GITHUB FOR IOMMU.SH
 
 - Run it to check for IOMMU Groups ```./iommu.sh```
+  - Record the GPU (and HDMI Audio) and USB card to Passthrough. example: ```10de:13c2``` from the GTX 970
 
 **Manjaro:**
 - ACS override patch linux-vfio AUR package
