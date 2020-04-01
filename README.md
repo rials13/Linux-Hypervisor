@@ -1,5 +1,5 @@
 # Linux-Hypervisor
-This is a section of notes for setting up a linux host to run qemu/kvm/libvirt with both a windows and a macos vm with passthrough
+This is a section of notes for setting up a linux host to run qemu/kvm/libvirt with both a windows and a macos vm with passthrough.  I know there are a lot of guides out there (all of my knowledge was from Googling how to do something) so this is as much a refference for me and to highliht a few things that some other guides don't include - all in one place.
 
 **Step 0: Choose your OS.**
 - I started with Manjaro because things worked on it with other guides but ended up on Mint.
@@ -55,4 +55,4 @@ This motherboard does not properly separate iommu groups so ACS override patch i
   - Update iniramfs ```sudo update-initramfs -u``` and reboot.
 - Aside from the passed through gpu not displaying any output, using ```lspci -nnv``` will show that the vfio-pci is the kernel driver in use. However: the passed through USB card on my system works for the host until the VM is started.
 
-**Step 3: Installing qemu/virt-manager
+**Step 3: Installing qemu/virt-manager**
