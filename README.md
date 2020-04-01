@@ -71,7 +71,12 @@ This motherboard does not properly separate iommu groups so ACS override patch i
   - ```sudo apt-get install virt-manager```
 - Problems encountered with Virt-Manager:
   - Starting the network: ```sudo virsh net-start default```
-    - I got the "firewalld backend" error. Installed 
+    - I got the "firewalld backend" error. Installed ```ebtables``` and ```dnsmasq``` and it worked. However, after installing I had to re-add the "connection"
+    - I had to add my username to the ```libvirt``` group in order to resolve some permissions issues. Also chown-ed the Intel SSD to my username. ```groups``` to check what group you are in.  ```Sudo usermod -a -G username libvirt``` Note: this only worked after a reboot following the install of virt-manager because libvirt was not a group yet
+  - UEFI files: I tried making a Windows 7/10 vm and the UEFI was not found (not a problem in MacOS because Passthrough Post provides the UEFI files in their folder). This was a problem in both Mint and Manjaro.
+    - ```/etc/libvirt/qemu.conf``` has an "nvram" section. Look at the section and confirm the path (note that this does not have to be uncommented it just describes the default behavior). My path was ```/usr/share/OVMF/...```
+    - Looking at that directory, the only file was ```OVMF.fd```
+    - 
 
 
 
