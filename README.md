@@ -36,7 +36,7 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 
 **OPTIONAL Vulkan:** Because we want the host to be functional as well for everyday tasks and some gaming.
 - With both Manjaro and Mint, Steam games on linux would occasionally not run due to not having vulkan natively installed (Dota Underlords). You may only encounter this issue with gfx cards that are older???
-- in etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```radeon.cik_support=0 amdgpu.cik_support=1 radeon.si_support=0 amdgpu.si_support=1```
+- in etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```radeon.cik_support=0 amdgpu.cik_support=1 radeon.si_support=0 amdgpu.si_support=1``` and ```sudo update-grub```
 - add a PPA to your system ```sudo add-apt-repository ppa:oibaf/graphics-drivers```
 - install from ppa ```sudo apt-get install libvulkan1 mesa-vulkan-drivers vulkan-utils```
 
@@ -55,3 +55,11 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 - Aside from the passed through gpu not displaying any output, using ```lspci -nnv``` will show that the vfio-pci is the kernel driver in use. However: the passed through USB card on my system works for the host until the VM is started.
 
 **Step 3: Installing qemu/virt-manager**
+- Most of this was taken from Passthrough Post's guide: https://passthroughpo.st/new-and-improved-mac-os-tutorial-part-1-the-basics/
+- Manjaro:
+  - ```sudo pacman -S qemu python python-pip git```
+  - ```pip install click request```
+- Mint:
+  - ```sudo apt-get install qemu python python-pip git```
+  - ```sudo apt-get install python3-pip```
+  - On Ubuntu (didn't have this problem for Mint) I also had to install ```qemu-system-x86``` and ```qemu-utils```
