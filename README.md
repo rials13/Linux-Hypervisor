@@ -38,4 +38,7 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 - add a PPA to your system ```sudo add-apt-repository ppa:oibaf/graphics-drivers```
 - install from ppa ```sudo apt-get install libvulkan1 mesa-vulkan-drivers vulkan-utils```
 
+**Step 2: Separating Passthrough Devices:**
+For Mnajaro, I used the the Arch Wiki: https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF#Isolating_the_GPU
 
+For Mint. I used the site: https://mathiashueber.com/windows-virtual-machine-gpu-passthrough-ubuntu/
