@@ -52,4 +52,4 @@ This motherboard does not properly separate iommu groups so ACS override patch i
   - In ```sudo nano /etc/modprobe.d/vfio.conf``` add: ```options vfio-pci ids=abcd:1234,abcd:5678```
   - In ```sudo nano /etc/modprobe.d/kvm.conf``` add: ```options kvm ignore_msrs=1``` (needed for Win 10 after update 1803.
   - Update iniramfs ```sudo update-initramfs -u``` and reboot.
-  - Aside from the passed through gpu not displaying any output, using ```lspci -nnv``` will show that the vfio-pci is the kernel driver in use. However: the passed through USB card on my system works for the host until the VM is started.
+- Aside from the passed through gpu not displaying any output, using ```lspci -nnv``` will show that the vfio-pci is the kernel driver in use. However: the passed through USB card on my system works for the host until the VM is started.
