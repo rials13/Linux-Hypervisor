@@ -13,6 +13,9 @@ Mobo + processor: Gigabyte z97x-SOC-CF with i7-4790
 - 16x Slot 3: R9 290 - primary (original plan was to pass AMD card through but had trouble getting MacOS to work with this card)
 - 16x Slot 4: Fresco Logic FL1100 USB 3.0 - passed through to VMs
 
+- Corsair F120 for boot ssd and host OS
+- Intel SSD for VM storage
+
 This motherboard does not properly separate iommu groups so ACS override patch it required.
 
 **Step 1: Enabling IOMMU** 
@@ -59,17 +62,24 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 - Manjaro:
   - ```sudo pacman -S qemu python python-pip git```
   - ```pip install click request```
-- Mint:
+  - Install Virt-Manger
+- Mint: (Note: on my Mint install, because I already had the files for MacOS VM, I skipped the pip installs.)
   - ```sudo apt-get install qemu python python-pip git```
   - ```sudo apt-get install python3-pip```
   - ```pip install click request```
   - On Ubuntu (didn't have this problem for Mint) I also had to install ```qemu-system-x86``` and ```qemu-utils```
-- Both:
-  -```git clone https://github.com/foxlet/macOS-Simple-KVM.git```
-  -```cd macOS-Simple-KVM```
-  -```./jumpstart.sh (optional --high-sierra, --mojave)``` I did ```./jumpstart.sh --high-sierra``` on account of having an Nvidia graphics card.
-  -```qemu-img create -f qcow2 MyDisk.qcow2 XXG``` where XX is the amount in gigabytes you want the drive to be. (this is where I needed qemu-utils on Ubuntu)
-  -Add these to bottom of basic.sh: 
+  - ```sudo apt-get install virt-manager```
+- Problems encountered with Virt-Manager:
+  - Starting the network: ```sudo virsh net-start default```
+    - I got the "firewalld backend" error. Installed 
+
+
+
+  - ```git clone https://github.com/foxlet/macOS-Simple-KVM.git```
+  - ```cd macOS-Simple-KVM```
+  - ```./jumpstart.sh (optional --high-sierra, --mojave)``` I did ```./jumpstart.sh --high-sierra``` on account of having an Nvidia graphics card.
+  - ```qemu-img create -f qcow2 MyDisk.qcow2 XXG``` where XX is the amount in gigabytes you want the drive to be. (this is where I needed qemu-utils on Ubuntu)
+  - Add these to bottom of ```basic.sh:``` 
   ```
     -drive id=SystemDisk,if=none,file=MyDisk.qcow2 \
     -device ide-hd,bus=sata.4,drive=SystemDisk \
