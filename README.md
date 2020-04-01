@@ -2,7 +2,7 @@
 This is a section of notes for setting up a linux host to run qemu/kvm/libvirt with both a windows and a macos vm with passthrough.  I know there are a lot of guides out there (all of my knowledge was from Googling how to do something) so this is as much a refference for me and to highliht a few things that some other guides don't include - all in one place.
 
 **Step 0: Choose your OS.**
-- I started with Manjaro because things worked on it with other guides but ended up on Mint.
+- I started with Manjaro because things worked on it with other guides but ended up on Mint because I switched after having trouble with the UEFI bios in Virt-manager (but also had trouble in Mint).
 - It's worth noting that an ACS override is easier on Manjaro with the AUR.
 
 -My config:
