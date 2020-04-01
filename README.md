@@ -16,6 +16,7 @@ This motherboard does not properly separate iommu groups so ACS override patch i
 
 **Enabling IOMMU** 
 - in /etc/default/grub GRUB_CMDLINE_LINUX_DEFAULT add ```intel_iommu=on iommu=pt```
+- Update grub ```sudo update-grub```
 - in a file called ```iommu.sh```copy and paste from TODO:LINK TO PASSTHROUGH POST GITHUB FOR IOMMU.SH
 
 - Run it to check for IOMMU Groups ```./iommu.sh```
